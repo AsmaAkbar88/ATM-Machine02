@@ -1,20 +1,23 @@
 #! /usr/bin/env node
 import inquirer from "inquirer";
+import chalk from "chalk";
 let myBalance = 50000;
 let myPin = 2233;
 let pinAns = await inquirer.prompt([
     {
         name: "pin",
-        message: " Enter your PIN code:  ",
+        message: chalk.yellowBright(" \n Enter your PIN code:  "),
         type: "number"
     }
 ]);
 if (pinAns.pin === myPin) {
-    console.log(" \n Welcom to ATM Machine"),
-        console.log(" \n PIN is Correct...! Login Successfuly \n ");
+    console.log(chalk.whiteBright(" \n Welcom to ATM Machine\n ")),
+        console.log("_".repeat(60));
+    console.log(" \n PIN is Correct...! Login Successfuly \n ");
+    console.log("_".repeat(20));
     let operationAns = await inquirer.prompt([
         { name: "operation",
-            message: " Please select from the option below  ",
+            message: chalk.greenBright(" \N Please select from the option below  "),
             type: "list",
             choices: ["Withdraw", "Check Balance", "Fast Cash"]
         }
@@ -33,12 +36,11 @@ if (pinAns.pin === myPin) {
 
 
 Thanks for using ATM Machine`);
+            console.log("__".repeat(40));
         }
         else {
-            console.log(`\n Insufficient Balance \n
-
-
-Thanks for using ATM Machine`);
+            console.log(chalk.redBright(`\n Insufficient Balance \n`), (`Thanks for using ATM Machine`));
+            console.log("__".repeat(40));
         }
     }
     ;
@@ -46,7 +48,7 @@ Thanks for using ATM Machine`);
         let fastCashAns = await inquirer.prompt([
             {
                 name: "FC",
-                message: " Choose withdraw Method \n Select Amount: ",
+                message: chalk.yellow(" Choose withdraw Method \n Select Amount: "),
                 type: "list",
                 choices: ["500", "1000", "15000", "20000", "25000", "30000"]
             }
@@ -58,6 +60,7 @@ Thanks for using ATM Machine`);
 
 
 Thanks for using ATM Machine`);
+            console.log("__".repeat(40));
         }
     }
     ;
@@ -69,7 +72,7 @@ Thanks for using ATM Machine`);
     }
 }
 else {
-    console.log(`\n   incorrect PIN code \n
+    console.log(chalk.red(`\n   incorrect PIN code \n
         
-        Tray again`);
+        Tray again`));
 }
